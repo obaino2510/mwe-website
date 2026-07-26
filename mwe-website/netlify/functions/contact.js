@@ -53,30 +53,90 @@ export const handler = async (event) => {
       replyTo: email, // User's email for replies
       subject: `New Contact Form Submission from ${name}`,
       html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #d9202a;">New Contact Form Submission</h2>
-          <div style="background-color: #f5f5f5; padding: 20px; border-radius: 5px;">
-            <p><strong>Name:</strong> ${name}</p>
-            <p><strong>Email:</strong> ${email}</p>
-            ${phone ? `<p><strong>Phone:</strong> ${phone}</p>` : ''}
-            <p><strong>Message:</strong></p>
-            <p style="white-space: pre-wrap;">${message}</p>
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <style>
+            body { margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f5f5f5; }
+            .email-container { max-width: 600px; margin: 0 auto; background-color: #ffffff; }
+            .header { background: linear-gradient(135deg, #0a1929 0%, #1a2f4a 100%); padding: 30px 20px; text-align: center; }
+            .header h1 { color: #ffffff; margin: 0; font-size: 24px; font-weight: 700; }
+            .header p { color: #b8c5d6; margin: 10px 0 0 0; font-size: 14px; }
+            .content { padding: 40px 30px; }
+            .label { font-size: 12px; color: #666; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 5px; font-weight: 600; }
+            .value { font-size: 16px; color: #1a2f4a; margin-bottom: 25px; padding: 10px 15px; background-color: #f9f9f9; border-radius: 5px; border-left: 3px solid #d9202a; }
+            .message-box { background-color: #f9f9f9; padding: 20px; border-radius: 5px; border-left: 3px solid #d9202a; margin-top: 10px; }
+            .message-text { color: #333; line-height: 1.6; white-space: pre-wrap; margin: 0; }
+            .footer { background-color: #0a1929; color: #b8c5d6; padding: 30px 20px; text-align: center; }
+            .footer-title { font-size: 14px; font-weight: 600; color: #ffffff; margin: 0 0 10px 0; }
+            .footer-info { font-size: 12px; margin: 5px 0; color: #8b98a8; }
+            .footer-link { color: #d9202a; text-decoration: none; }
+            .divider { height: 1px; background-color: #e0e0e0; margin: 30px 0; }
+          </style>
+        </head>
+        <body>
+          <div class="email-container">
+            <!-- Header -->
+            <div class="header">
+              <h1>New Contact Form Submission</h1>
+              <p>Someone has reached out via your website</p>
+            </div>
+            
+            <!-- Content -->
+            <div class="content">
+              <div class="label">Full Name</div>
+              <div class="value">${name}</div>
+              
+              <div class="label">Email Address</div>
+              <div class="value"><a href="mailto:${email}" style="color: #d9202a; text-decoration: none;">${email}</a></div>
+              
+              ${phone ? `
+                <div class="label">Phone Number</div>
+                <div class="value"><a href="tel:${phone}" style="color: #d9202a; text-decoration: none;">${phone}</a></div>
+              ` : ''}
+              
+              <div class="divider"></div>
+              
+              <div class="label">Message</div>
+              <div class="message-box">
+                <p class="message-text">${message}</p>
+              </div>
+            </div>
+            
+            <!-- Footer -->
+            <div class="footer">
+              <p class="footer-title">Mathematics World of Excellence</p>
+              <p class="footer-info">Lagos & Awka, Nigeria</p>
+              <p class="footer-info">
+                <a href="mailto:info@mwe.com.ng" class="footer-link">info@mwe.com.ng</a> | 
+                <a href="tel:+2340000000000" class="footer-link">+234 000 000 0000</a>
+              </p>
+              <p class="footer-info" style="margin-top: 20px; font-size: 11px;">
+                This email was automatically generated from the MWE website contact form.
+              </p>
+            </div>
           </div>
-          <p style="color: #666; font-size: 12px; margin-top: 20px;">
-            This email was sent from the MWE website contact form.
-          </p>
-        </div>
+        </body>
+        </html>
       `,
       text: `
-        New Contact Form Submission
-        
-        Name: ${name}
-        Email: ${email}
-        ${phone ? `Phone: ${phone}` : ''}
-        
-        Message:
-        ${message}
-      `,
+NEW CONTACT FORM SUBMISSION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+From: ${name}
+Email: ${email}
+${phone ? `Phone: ${phone}` : ''}
+
+MESSAGE:
+${message}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Mathematics World of Excellence
+Lagos & Awka, Nigeria
+info@mwe.com.ng | +234 000 000 0000
+      `.trim(),
     };
 
     console.log('Attempting to send email via SendGrid...');
