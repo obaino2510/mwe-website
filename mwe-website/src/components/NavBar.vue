@@ -2,16 +2,18 @@
   <v-app-bar elevation="2" app color="white">
     <!-- Logo on the left -->
     <v-app-bar-title>
-      <div class="d-flex align-center">
-        <v-img
-          src="/logo.png"
-          alt="Logo"
-          max-width="80"
-          max-height="80"
-          class="mr-2"
-        />
-        <!-- <span class="text-h6 font-weight-bold">MWE</span> -->
-      </div>
+      <router-link to="/" class="logo-link">
+        <div class="d-flex align-center">
+          <v-img
+            src="/logo.png"
+            alt="Logo"
+            max-width="80"
+            max-height="80"
+            class="mr-2"
+          />
+          <!-- <span class="text-h6 font-weight-bold">MWE</span> -->
+        </div>
+      </router-link>
     </v-app-bar-title>
 
     <v-spacer></v-spacer>
@@ -26,6 +28,16 @@
         :class="['mx-1', 'nav-link-btn', { 'active-link': isActive(link.to) }]"
       >
         {{ link.title }}
+      </v-btn>
+      
+      <!-- Theme Toggle Button -->
+      <v-btn
+        icon
+        @click="toggleTheme"
+        class="ml-2 theme-toggle-btn"
+        variant="text"
+      >
+        <v-icon>{{ isDark ? 'mdi-weather-sunny' : 'mdi-weather-night' }}</v-icon>
       </v-btn>
     </div>
 
@@ -52,6 +64,14 @@
       >
         <v-list-item-title>{{ link.title }}</v-list-item-title>
       </v-list-item>
+      
+      <!-- Theme Toggle in Mobile Drawer -->
+      <v-list-item @click="toggleTheme">
+        <template v-slot:prepend>
+          <v-icon>{{ isDark ? 'mdi-weather-sunny' : 'mdi-weather-night' }}</v-icon>
+        </template>
+        <v-list-item-title>{{ isDark ? 'Light Mode' : 'Dark Mode' }}</v-list-item-title>
+      </v-list-item>
     </v-list>
   </v-navigation-drawer>
 </template>
@@ -59,12 +79,21 @@
 <script lang="ts" setup>
 import { ref, computed } from 'vue';
 import { useRoute } from 'vue-router';
+import { useTheme } from 'vuetify';
 
 // Mobile drawer state
 const drawer = ref(false);
 
 // Get current route
 const route = useRoute();
+
+// Theme management
+const theme = useTheme();
+const isDark = computed(() => theme.global.current.value.dark);
+
+const toggleTheme = () => {
+  theme.global.name.value = isDark.value ? 'light' : 'dark';
+};
 
 // Navigation links
 const navLinks = [
@@ -84,6 +113,12 @@ const isActive = (path: string) => {
 <style scoped>
 .v-app-bar-title {
   cursor: pointer;
+}
+
+.logo-link {
+  text-decoration: none;
+  display: block;
+  line-height: 0;
 }
 
 .nav-link-btn {
@@ -131,5 +166,16 @@ const isActive = (path: string) => {
 .active-mobile-link .v-list-item-title {
   color: #d9202a !important;
   font-weight: 600;
+}
+
+/* Theme toggle button styling */
+.theme-toggle-btn {
+  color: #333 !important;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle-btn:hover {
+  color: #d9202a !important;
+  transform: rotate(15deg);
 }
 </style>

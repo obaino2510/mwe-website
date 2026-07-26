@@ -6,12 +6,14 @@
         <!-- Company Info Section -->
         <v-col cols="12" md="4" class="footer-section">
           <div class="company-info">
-            <v-img
-              src="/logo-4a.png"
-              alt="MWE Logo"
-              max-width="120"
-              class="mb-4"
-            />
+            <router-link to="/" class="footer-logo-link">
+              <v-img
+                src="/logo-4a.png"
+                alt="MWE Logo"
+                max-width="120"
+                class="mb-4"
+              />
+            </router-link>
             <p class="company-description">
               A math-driven strategy and solutions company delivering expert education, full-scale data analytics, and intelligent digital solutions across every industry.
             </p>
@@ -134,10 +136,10 @@
 <script lang="ts" setup>
 const navigateLinks = [
   { title: 'Home', to: '/' },
-  { title: 'About Us', to: '/about' },
+  { title: 'About Us', to: '/about-us' },
   { title: 'Services', to: '/services' },
   { title: 'Who We Serve', to: '/who-we-serve' },
-  { title: 'Contact Us', to: '/contact' },
+  { title: 'Contact Us', to: '/contact-us' },
 ];
 
 const services = [
@@ -165,6 +167,18 @@ const services = [
 
 .company-info {
   max-width: 300px;
+}
+
+.footer-logo-link {
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  line-height: 0;
+}
+
+.footer-logo-link:hover {
+  opacity: 0.8;
 }
 
 .company-description {

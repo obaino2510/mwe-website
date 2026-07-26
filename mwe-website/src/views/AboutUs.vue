@@ -28,7 +28,7 @@
             </p>
           </v-col>
           <v-col cols="12" md="6">
-            <v-card elevation="2" class="pa-8">
+            <v-card elevation="2" class="pa-8 mission-vision-card">
               <h3 class="mb-4">Our Mission</h3>
               <p class="mb-6">
                 To empower individuals and organizations through mathematics, data analytics,
@@ -70,13 +70,29 @@
 }
 
 .content-section {
-  background-color: white;
+  background-color: rgb(var(--v-theme-surface));
+}
+
+.content-section p {
+  color: rgb(var(--v-theme-on-surface));
 }
 
 .section-heading {
   font-size: 2rem;
   font-weight: 700;
   color: rgb(var(--v-theme-on-surface));
+}
+
+.mission-vision-card {
+  background: linear-gradient(135deg, #0a1929 0%, #1a2f4a 100%);
+}
+
+.mission-vision-card h3 {
+  color: white;
+}
+
+.mission-vision-card p {
+  color: #b8c5d6;
 }
 
 @media (max-width: 960px) {

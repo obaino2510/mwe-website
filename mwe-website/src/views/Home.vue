@@ -94,7 +94,7 @@ const features = [
 }
 
 .features-section {
-  background-color: #f5f5f5;
+  background-color: rgb(var(--v-theme-surface));
 }
 
 .section-title {
@@ -106,6 +106,7 @@ const features = [
 .feature-card {
   height: 100%;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: rgb(var(--v-theme-surface-variant));
 }
 
 .feature-card:hover {
@@ -120,7 +121,7 @@ const features = [
 }
 
 .feature-description {
-  color: #666;
+  color: rgb(var(--v-theme-on-surface-variant));
   line-height: 1.6;
 }
 
