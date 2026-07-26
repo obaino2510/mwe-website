@@ -198,7 +198,7 @@ const submitForm = async () => {
 .section-heading {
   font-size: 2rem;
   font-weight: 700;
-  color: #1a2f4a;
+  color: rgb(var(--v-theme-on-surface));
 }
 
 .contact-item {
@@ -209,7 +209,7 @@ const submitForm = async () => {
 .contact-label {
   font-size: 1rem;
   font-weight: 600;
-  color: #1a2f4a;
+  color: rgb(var(--v-theme-on-surface));
   margin-bottom: 4px;
 }
 

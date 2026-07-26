@@ -109,7 +109,7 @@ const services = [
 .service-title {
   font-size: 1.75rem;
   font-weight: 600;
-  color: #1a2f4a;
+  color: rgb(var(--v-theme-on-surface));
 }
 
 .service-description {

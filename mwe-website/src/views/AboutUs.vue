@@ -76,7 +76,7 @@
 .section-heading {
   font-size: 2rem;
   font-weight: 700;
-  color: #1a2f4a;
+  color: rgb(var(--v-theme-on-surface));
 }
 
 @media (max-width: 960px) {
