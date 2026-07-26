@@ -1,8 +1,8 @@
 [build]
   base = "mwe-website"
   command = "npm run build"
-  publish = "mwe-website/dist"
-  functions = "mwe-website/netlify/functions"
+  publish = "dist"
+  functions = "netlify/functions"
 
 [build.environment]
   NODE_VERSION = "20"
