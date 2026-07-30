@@ -1,14 +1,27 @@
 <template>
   <v-container fluid class="pa-0">
     <section class="hero-section">
-      <v-container>
+      <!-- Desktop Banner -->
+      <div class="hero-banner-wrapper d-none d-md-block">
+        <v-img
+          src="/home-banner-desktop.png"
+          alt="MWE Banner"
+          class="hero-banner"
+        />
+      </div>
+      
+      <!-- Mobile Banner -->
+      <div class="hero-banner-wrapper d-block d-md-none">
+        <v-img
+          src="/home-banner-mobile.png"
+          alt="MWE Banner"
+          class="hero-banner"
+        />
+      </div>
+      
+      <v-container class="hero-content">
         <v-row align="center" justify="center" class="text-center">
           <v-col cols="12" md="8">
-            <h1 class="hero-title mb-4">Mathematics World of Excellence</h1>
-            <p class="hero-subtitle mb-6">
-              A math-driven strategy and solutions company delivering expert education,
-              full-scale data analytics, and intelligent digital solutions across every industry.
-            </p>
             <v-btn
               color="#d9202a"
               size="large"
@@ -73,24 +86,31 @@ const features = [
 
 <style scoped>
 .hero-section {
-  background: linear-gradient(135deg, #0a1929 0%, #1a2f4a 100%);
+  position: relative;
   color: white;
-  padding: 120px 0;
-  min-height: 500px;
-  display: flex;
-  align-items: center;
+  width: 100%;
+  overflow: hidden;
 }
 
-.hero-title {
-  font-size: 3rem;
-  font-weight: 700;
-  line-height: 1.2;
+.hero-banner-wrapper {
+  width: 100%;
+  line-height: 0;
 }
 
-.hero-subtitle {
-  font-size: 1.25rem;
-  color: #b8c5d6;
-  line-height: 1.6;
+.hero-banner {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.hero-content {
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+  left: 0;
+  right: 0;
+  bottom: 80px;
+  padding: 0;
 }
 
 .features-section {
@@ -126,16 +146,12 @@ const features = [
 }
 
 @media (max-width: 960px) {
-  .hero-title {
-    font-size: 2rem;
-  }
-  
-  .hero-subtitle {
-    font-size: 1rem;
-  }
-  
   .section-title {
     font-size: 2rem;
+  }
+  
+  .hero-content {
+    bottom: 40px;
   }
 }
 </style>
