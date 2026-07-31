@@ -1,31 +1,80 @@
 <template>
   <v-container fluid class="pa-0">
+    <!-- Header -->
     <section class="page-header">
       <v-container>
         <h1 class="page-title">Our Services</h1>
-        <p class="page-subtitle">Comprehensive solutions tailored to your needs</p>
+        <p class="page-subtitle">
+          Three integrated service areas. One mathematical foundation. Endless possibilities.
+        </p>
       </v-container>
     </section>
 
+    <!-- Intro Paragraph -->
+    <section class="intro-section py-12">
+      <v-container>
+        <v-row justify="center">
+          <v-col cols="12" md="10">
+            <p class="intro-text mb-4">
+              At MWE, every service we deliver is built on the same rigorous mathematical thinking, strategic design, 
+              and commitment to measurable outcomes. Whether you are a school seeking to transform your mathematics 
+              curriculum, a corporation looking to build analytical capability across your workforce, an industry 
+              player seeking to eliminate operational inefficiencies through data-driven intelligence, or an 
+              individual learner determined to unlock your full mathematical potential; MWE has a purpose-built 
+              solution designed specifically for you.
+            </p>
+            <p class="intro-text">
+              Explore our three integrated service areas below.
+            </p>
+          </v-col>
+        </v-row>
+      </v-container>
+    </section>
+
+    <!-- Service Areas -->
     <section class="services-section py-16">
       <v-container>
         <v-row>
-          <v-col cols="12" md="4" v-for="service in services" :key="service.title" class="mb-8">
-            <v-card class="service-card" elevation="3" height="100%">
+          <v-col cols="12" v-for="service in services" :key="service.title" class="mb-6">
+            <v-card class="service-card" elevation="2">
               <v-card-text class="pa-8">
-                <v-icon :icon="service.icon" size="72" color="#d9202a" class="mb-4"></v-icon>
-                <h3 class="service-title mb-4">{{ service.title }}</h3>
-                <p class="service-description mb-4">{{ service.description }}</p>
-                <v-list density="compact" class="service-features">
-                  <v-list-item v-for="feature in service.features" :key="feature">
-                    <template v-slot:prepend>
-                      <v-icon icon="mdi-check-circle" color="#d9202a" size="small"></v-icon>
-                    </template>
-                    <v-list-item-title>{{ feature }}</v-list-item-title>
-                  </v-list-item>
-                </v-list>
+                <v-row align="center">
+                  <v-col cols="12" md="9">
+                    <h3 class="service-title mb-4">{{ service.title }}</h3>
+                    <p class="service-description mb-4">{{ service.description }}</p>
+                  </v-col>
+                  <v-col cols="12" md="3" class="text-center text-md-right">
+                    <v-btn
+                      color="#d9202a"
+                      size="large"
+                      :to="service.link"
+                    >
+                      Explore This Service
+                    </v-btn>
+                  </v-col>
+                </v-row>
               </v-card-text>
             </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
+    </section>
+
+    <!-- Closing Call To Action -->
+    <section class="cta-section py-16">
+      <v-container>
+        <v-row justify="center">
+          <v-col cols="12" md="8" class="text-center">
+            <h2 class="cta-title mb-6">
+              Not sure which service is right for you? Let us help you find the perfect solution.
+            </h2>
+            <v-btn
+              color="#d9202a"
+              size="x-large"
+              to="/contact-us"
+            >
+              Get In Touch
+            </v-btn>
           </v-col>
         </v-row>
       </v-container>
@@ -36,40 +85,19 @@
 <script lang="ts" setup>
 const services = [
   {
-    icon: 'mdi-school',
-    title: 'Mathematics Education',
-    description: 'Expert education programs designed to build strong mathematical foundations.',
-    features: [
-      'Curriculum Development',
-      'Teacher Training',
-      'Student Tutoring',
-      'Educational Consulting',
-      'Assessment & Evaluation',
-    ],
+    title: 'Mathematics Education & Academic Support',
+    description: 'From bespoke curriculum development and teacher training to personalized tutoring and corporate quantitative intelligence — MWE owns the complete process of building mathematical competence at every level, for every client, in every context.',
+    link: '/services/mathematics-education',
   },
   {
-    icon: 'mdi-monitor-dashboard',
-    title: 'Digital Solutions',
-    description: 'Intelligent digital solutions tailored to transform your business operations.',
-    features: [
-      'Web Development',
-      'Mobile Applications',
-      'Software Consulting',
-      'System Integration',
-      'Cloud Solutions',
-    ],
+    title: 'Digital Solutions & Innovations',
+    description: 'We research, strategically design, and project-manage intelligent digital solutions and innovations — selecting the best technology partners for each specific client need and delivering seamlessly across schools, corporations, factories, industries, and individuals.',
+    link: '/services/digital-solutions',
   },
   {
-    icon: 'mdi-chart-line',
-    title: 'Data Analytics',
-    description: 'Full-scale data analytics services that turn raw data into actionable insights.',
-    features: [
-      'Business Intelligence',
-      'Predictive Analytics',
-      'Data Visualization',
-      'Statistical Analysis',
-      'Machine Learning',
-    ],
+    title: 'Data Analytics & Quantitative Solutions',
+    description: 'From raw data to boardroom-ready intelligence — MWE owns the full analytics process. We deliver rigorous data analysis, quantitative modelling, predictive analytics, and evidence-based strategies that drive smarter decisions and stronger outcomes across every industry.',
+    link: '/services/data-analytics',
   },
 ];
 </script>
@@ -91,39 +119,71 @@ const services = [
 .page-subtitle {
   font-size: 1.25rem;
   color: #b8c5d6;
+  font-style: italic;
+}
+
+.intro-section {
+  background-color: rgb(var(--v-theme-surface));
+}
+
+.intro-text {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: rgb(var(--v-theme-on-surface));
+  text-align: center;
 }
 
 .services-section {
-  background-color: #f5f5f5;
+  background-color: rgb(var(--v-theme-surface-variant));
 }
 
 .service-card {
+  background: linear-gradient(135deg, #0a1929 0%, #1a2f4a 100%) !important;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .service-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
+  transform: translateX(8px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .service-title {
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   font-weight: 600;
-  color: rgb(var(--v-theme-on-surface));
+  color: white !important;
 }
 
 .service-description {
-  color: #666;
+  color: #b8c5d6 !important;
   line-height: 1.6;
+  font-size: 1rem;
 }
 
-.service-features {
-  background-color: transparent;
+.cta-section {
+  background-color: rgb(var(--v-theme-surface));
+}
+
+.cta-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: rgb(var(--v-theme-on-surface));
 }
 
 @media (max-width: 960px) {
   .page-title {
     font-size: 2rem;
+  }
+  
+  .page-subtitle {
+    font-size: 1rem;
+  }
+  
+  .cta-title {
+    font-size: 1.5rem;
+  }
+  
+  .service-title {
+    font-size: 1.25rem;
   }
 }
 </style>

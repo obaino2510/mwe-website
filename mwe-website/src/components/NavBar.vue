@@ -98,7 +98,7 @@ const toggleTheme = () => {
 // Navigation links
 const navLinks = [
   { title: 'Home', to: '/' },
-  { title: 'About Us', to: '/about-us' },
+  // { title: 'About Us', to: '/about-us' },
   { title: 'Services', to: '/services' },
   { title: 'Who we Serve', to: '/who-we-serve' },
   { title: 'Contact Us', to: '/contact-us' },

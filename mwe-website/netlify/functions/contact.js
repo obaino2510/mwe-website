@@ -20,8 +20,8 @@ export const handler = async (event) => {
   }
 
   try {
-    const { name, email, phone, message } = JSON.parse(event.body);
-    console.log('Form data received:', { name, email, phone: !!phone, message: message?.substring(0, 50) });
+    const { name, organization, email, phone, category, service, message } = JSON.parse(event.body);
+    console.log('Form data received:', { name, email, organization, category, service, phone: !!phone, message: message?.substring(0, 50) });
 
     // Validate required fields
     if (!name || !email || !message) {
@@ -89,12 +89,27 @@ export const handler = async (event) => {
               <div class="label">Full Name</div>
               <div class="value">${name}</div>
               
+              ${organization ? `
+                <div class="label">Organisation / Institution</div>
+                <div class="value">${organization}</div>
+              ` : ''}
+              
               <div class="label">Email Address</div>
               <div class="value"><a href="mailto:${email}" style="color: #d9202a; text-decoration: none;">${email}</a></div>
               
               ${phone ? `
                 <div class="label">Phone Number</div>
                 <div class="value"><a href="tel:${phone}" style="color: #d9202a; text-decoration: none;">${phone}</a></div>
+              ` : ''}
+              
+              ${category ? `
+                <div class="label">I Am A</div>
+                <div class="value">${category}</div>
+              ` : ''}
+              
+              ${service ? `
+                <div class="label">Service Interested In</div>
+                <div class="value">${service}</div>
               ` : ''}
               
               <div class="divider"></div>
@@ -125,9 +140,11 @@ export const handler = async (event) => {
 NEW CONTACT FORM SUBMISSION
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-From: ${name}
+From: ${name}${organization ? `\nOrganisation: ${organization}` : ''}
 Email: ${email}
 ${phone ? `Phone: ${phone}` : ''}
+${category ? `Category: ${category}` : ''}
+${service ? `Service Interested In: ${service}` : ''}
 
 MESSAGE:
 ${message}
