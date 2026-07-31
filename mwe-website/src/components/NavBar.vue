@@ -30,15 +30,15 @@
         {{ link.title }}
       </v-btn>
       
-      <!-- Theme Toggle Button -->
-      <v-btn
+      <!-- Theme Toggle Button - Commented Out -->
+      <!-- <v-btn
         icon
         @click="toggleTheme"
         class="ml-2 theme-toggle-btn"
         variant="text"
       >
         <v-icon>{{ isDark ? 'mdi-weather-sunny' : 'mdi-weather-night' }}</v-icon>
-      </v-btn>
+      </v-btn> -->
     </div>
 
     <!-- Mobile Hamburger Menu (shown only on mobile) -->
@@ -65,13 +65,13 @@
         <v-list-item-title>{{ link.title }}</v-list-item-title>
       </v-list-item>
       
-      <!-- Theme Toggle in Mobile Drawer -->
-      <v-list-item @click="toggleTheme">
+      <!-- Theme Toggle in Mobile Drawer - Commented Out -->
+      <!-- <v-list-item @click="toggleTheme">
         <template v-slot:prepend>
           <v-icon>{{ isDark ? 'mdi-weather-sunny' : 'mdi-weather-night' }}</v-icon>
         </template>
         <v-list-item-title>{{ isDark ? 'Light Mode' : 'Dark Mode' }}</v-list-item-title>
-      </v-list-item>
+      </v-list-item> -->
     </v-list>
   </v-navigation-drawer>
 </template>
